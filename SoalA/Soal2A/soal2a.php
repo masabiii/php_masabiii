@@ -9,12 +9,12 @@
     <?php
     include 'koneksi.php';
 
-    if (isset($_GET['search_hobby'])) {
-        $search_hobby = mysqli_real_escape_string($conn, $_GET['search_hobby']);
+    if (isset($_GET['search_hobi'])) {
+        $search_hobi = mysqli_real_escape_string($conn, $_GET['search_hobi']);
         $sql = "SELECT h.hobi, COUNT(p.id) as jumlah_orang
                 FROM hobi h
                 LEFT JOIN person p ON h.person_id = p.id
-                WHERE h.hobi LIKE '%$search_hobby%'
+                WHERE h.hobi LIKE '%$search_hobi%'
                 GROUP BY h.hobi
                 ORDER BY jumlah_orang DESC";
     } else {
@@ -50,8 +50,8 @@
     ?>
     
     <form method="GET">
-        <label for="search_hobby">Cari Berdasarkan Hobi:</label>
-        <input type="text" name="search_hobby" id="search_hobby">
+        <label for="search_hobi">Cari Berdasarkan Hobi:</label>
+        <input type="text" name="search_hobi" id="search_hobi">
         <input type="submit" value="Cari">
     </form>
 </body>
